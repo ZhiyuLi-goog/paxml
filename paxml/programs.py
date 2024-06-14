@@ -875,8 +875,8 @@ class BaseEvalProgram(Program):
       )
 
     loss = np.array(loss)
-    for k in summary_tensors:
-      summary_tensors[k] = np.array([np.asarray(t) for t in summary_tensors[k]])
+    # for k in summary_tensors:
+    #   summary_tensors[k] = np.array([np.asarray(t) for t in summary_tensors[k]])
     loss = np.mean(loss, axis=0)
     logging.info('step: %d, eval test %s loss: %s', step, self._name, loss)
 
@@ -898,15 +898,15 @@ class BaseEvalProgram(Program):
         metrics_prefix=self._task.decode.metrics_prefix,
     )
 
-    summary_utils.compute_and_write_clu_metric_summaries(
-        clu_metrics,
-        step,
-        metrics_prefix=self._task.decode.metrics_prefix,
-    )
+    # summary_utils.compute_and_write_clu_metric_summaries(
+    #     clu_metrics,
+    #     step,
+    #     metrics_prefix=self._task.decode.metrics_prefix,
+    # )
 
-    maybe_write_eval_outputs(
-        EvaluationMode.EVAL, output_dir, step, flat_scoring_outputs
-    )
+    # maybe_write_eval_outputs(
+    #     EvaluationMode.EVAL, output_dir, step, flat_scoring_outputs
+    # )
 
     return EvalProgramOutput(
         state,
